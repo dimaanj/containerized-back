@@ -1,0 +1,49 @@
+type user {
+  id: ID!
+  email: String!
+  password: String
+}
+
+type authData {
+  userId: ID!
+  token: String!
+  tokenExp: Int!
+}
+
+type message {
+  id: ID!
+  body: String!
+  effectiveDate: String!
+  author: user!
+  conversation:  conversation!
+}
+
+type conversation {
+  id: ID!
+  name: String!
+  members: [user!]
+}
+
+# type notification {
+#   id: ID!
+#   effectiveDateTime: String!
+#   type: String!
+# }
+
+type Query {
+  messages(limit: Int, sortField: String, sortOrder: String): [message]
+  user: user
+  conversation: conversation
+  message: message
+  login(email: String!, password: String!): authData!
+}
+
+type Mutation {
+  createUser(email: String!, password: String!): user!
+
+  createConversation(ids: [String!], name: String!): conversation!
+  deleteConversation(id: String!): conversation
+
+  createMessage(conversationId: String!, body: String!, effectiveDateTime: String!): message
+  deleteMessage(id: ID!): message
+}

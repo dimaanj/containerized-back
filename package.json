@@ -1,0 +1,58 @@
+{
+  "name": "back",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/Dmitriynj/containerized-back.git",
+  "author": "Dmitry, Tomashevich <diaamnj@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node --inspect=5858 -r ts-node/register ./src/app.ts",
+    "start:watch": "nodemon",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@types/bcrypt": "^3.0.0",
+    "@types/express": "^4.17.6",
+    "@types/jsonwebtoken": "^8.3.9",
+    "@types/lodash": "^4.14.150",
+    "@types/node": "^13.13.4",
+    "@types/pg": "^7.14.3",
+    "bcrypt": "^4.0.1",
+    "body-parser": "^1.19.0",
+    "dataloader": "^2.0.0",
+    "eslint": "^6.8.0",
+    "eslint-plugin-import": "^2.20.2",
+    "express": "^4.17.1",
+    "express-graphql": "^0.9.0",
+    "graphql": "^15.0.0",
+    "graphql-middleware": "^4.0.2",
+    "graphql-tools": "^5.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.15",
+    "nodemon": "^2.0.3",
+    "path": "^0.12.7",
+    "pg": "^8.0.3",
+    "ts-node": "^8.9.1",
+    "tslint": "^6.1.2",
+    "tslint-config-airbnb": "^5.11.2",
+    "typescript": "^3.8.3"
+  },
+  "nodemonConfig": {
+    "env": {
+      "SECURE_STRING": "someSecUreString",
+      "PORT": 5007,
+      "DATABASE_URL": "postgresql://postgres:1231@localhost:2001/app"
+    },
+    "ignore": [
+      "**/*.test.ts",
+      "**/*.spec.ts",
+      ".git",
+      "node_modules"
+    ],
+    "watch": [
+      "src"
+    ],
+    "exec": "yarn start",
+    "ext": "ts"
+  }
+}
