@@ -36,23 +36,5 @@
     "tslint": "^6.1.2",
     "tslint-config-airbnb": "^5.11.2",
     "typescript": "^3.8.3"
-  },
-  "nodemonConfig": {
-    "env": {
-      "SECURE_STRING": "someSecUreString",
-      "PORT": 5007,
-      "DATABASE_URL": "postgresql://postgres:1231@localhost:2001/app"
-    },
-    "ignore": [
-      "**/*.test.ts",
-      "**/*.spec.ts",
-      ".git",
-      "node_modules"
-    ],
-    "watch": [
-      "src"
-    ],
-    "exec": "yarn start",
-    "ext": "ts"
   }
 }

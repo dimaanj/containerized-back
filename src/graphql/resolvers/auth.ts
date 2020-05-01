@@ -1,6 +1,6 @@
 import { PoolClient } from 'pg';
 import { head } from 'lodash';
-import { compare, hash } from 'bcrypt';
+import * as bcrypt from 'bcrypt';
 import { sign } from 'jsonwebtoken';
 import { UserType } from '../../type/model';
 import { ContextType } from '../../type/context';
@@ -25,7 +25,7 @@ const userQuery = {
       throw new Error('User does not exists!');
     }
 
-    const isCorrectPassword = await compare(password, user.password);
+    const isCorrectPassword = await bcrypt.compare(password, user.password);
     if (!isCorrectPassword) {
       throw new Error('Password is incorrect');
     }
@@ -62,7 +62,7 @@ const userMutation = {
       throw new Error('User already exists!');
     }
 
-    const hashedPassword = await hash(password, 12);
+    const hashedPassword = await bcrypt.hash(password, 12);
     const res = await poolClient.query(USER_QUERY.CREATE, [
       email,
       hashedPassword,
